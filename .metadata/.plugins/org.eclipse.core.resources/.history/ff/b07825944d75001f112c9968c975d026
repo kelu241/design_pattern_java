@@ -1,0 +1,31 @@
+package br.com.dominio;
+
+import javax.swing.JOptionPane;
+
+public class principal {
+
+  public static void main(String[] args) {
+  //singleton
+
+  GerenciadorImpressao g1 = GerenciadorImpressao.getInstance();
+  System.out.println(g1);
+  GerenciadorImpressao g2 = GerenciadorImpressao.getInstance();
+  System.out.println(g2);
+
+  //FACTORY
+  
+  String texto = JOptionPane.showInputDialog(null);
+  Mensagem mensagem = new MensagemSMS();
+  mensagem.enviar(texto);
+  Mensagem mensagem1 = new MensagemEmail();
+  String texto2 = JOptionPane.showInputDialog(null);
+  mensagem1.enviar(texto2);
+  
+  
+  //BILDER
+  
+  
+	}
+  
+  
+}

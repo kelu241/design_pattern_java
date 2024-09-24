@@ -1,0 +1,30 @@
+package br.com.dominio.facade;
+
+public class ComputerFacade {
+
+	private Memoria memoria;
+	private SSD hd;
+	private Acessorios acessorios;
+	private SO so;
+	private CPU cpu;
+
+	public ComputerFacade() {
+		this.memoria = new Memoria();
+		this.hd = new SSD();
+		this.cpu = new CPU();
+		this.so = new SO();
+	}
+
+	public void montarPC() {
+       System.out.println("MOntando um pc da nasa\n");
+		memoria.adicionarMemoria();
+		hd.adicionaSSD();
+		cpu.adicionarProcessador();
+		acessorios.adicionarMonitor();
+		acessorios.adicionarMouse();
+		acessorios.adicionarTeclado();
+		so.adicionarOS();
+		
+	}
+
+}

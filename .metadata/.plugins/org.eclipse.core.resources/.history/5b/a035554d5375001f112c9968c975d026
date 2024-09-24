@@ -1,0 +1,40 @@
+package br.com.dominio;
+//import br.com.dominio.builder.*;
+import br.com.dominio.factory.*;
+import br.com.dominio.singleton.*;
+import br.com.dominio.builder.*;
+import javax.swing.JOptionPane;
+
+public class principal {
+
+  public static void main(String[] args) {
+  //singleton
+
+  GerenciadorImpressao g1 = GerenciadorImpressao.getInstance();
+  System.out.println(g1);
+  GerenciadorImpressao g2 = GerenciadorImpressao.getInstance();
+  System.out.println(g2);
+
+  //FACTORY
+  
+  String texto = JOptionPane.showInputDialog(null);
+  Mensagem mensagem = new MensagemSMS();
+  mensagem.enviar(texto);
+  Mensagem mensagem1 = new MensagemEmail();
+  String texto2 = JOptionPane.showInputDialog(null);
+  mensagem1.enviar(texto2);
+  
+  
+  //BUILDER
+  
+  Pedido pedido = new PedidoBuilder()
+		  .setPedido("9999")
+		  .setCliente(0, "joão", "99738873")
+		  .setProduto("ps5 PRO, 55, new BigDecimal(10.00))"
+		  		+ "
+  
+  
+	}
+  
+  
+}

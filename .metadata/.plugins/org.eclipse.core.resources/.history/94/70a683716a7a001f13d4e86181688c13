@@ -1,0 +1,17 @@
+package br.com.dominio.adapter;
+
+public class CotacaoAdapter extends Cotacao {
+	
+    @override
+	public double getValor() {
+		return valor;
+	}
+     
+    @override
+	public void setValor(double valor) {
+		this.valor = valor;
+	}
+
+
+
+}

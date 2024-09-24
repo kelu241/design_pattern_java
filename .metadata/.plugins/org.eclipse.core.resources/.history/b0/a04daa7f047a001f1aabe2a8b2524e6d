@@ -1,0 +1,40 @@
+package br.com.dominio.state;
+
+public class Mario implements State {
+
+	@Override
+	public State pegarGogumelo() {
+		// TODO Auto-generated method stub
+		return new SuperMario();
+	}
+
+	@Override
+	public State pegarEstrala() {
+		// TODO Auto-generated method stub
+		return new MarioInvencivel();
+	}
+
+	@Override
+	public State pegarFlorDeFogo() {
+		// TODO Auto-generated method stub
+		return new FireMario();
+	}
+
+	@Override
+	public State colidirComInimigo() {
+		// TODO Auto-generated method stub
+		return MarioDead();
+	}
+
+	private State MarioDead() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String retornarTipo() {
+		// TODO Auto-generated method stub
+		return "Mario Comum";
+	}
+
+}

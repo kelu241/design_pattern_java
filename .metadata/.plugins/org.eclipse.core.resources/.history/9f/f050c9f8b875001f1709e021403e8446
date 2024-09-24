@@ -1,0 +1,8 @@
+package abstrac_factory;
+
+public interface VendaFactory {
+	
+	public NFE criarNFE();
+	public Boleto criarBoleto();
+
+}

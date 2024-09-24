@@ -1,0 +1,11 @@
+package abstrac_factory;
+
+public class NFESalvador implements NFE {
+
+	@Override
+	public double calcularImposto(Produto produto) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

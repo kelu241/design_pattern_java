@@ -1,0 +1,11 @@
+package abstrac_factory;
+
+public class BoletoBancoBrasil implements Boleto {
+
+	@Override
+	public NFE emitir(Produto produto, double imposto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

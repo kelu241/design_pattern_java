@@ -1,0 +1,12 @@
+package br.com.dominio.state;
+
+public interface State {
+	
+	publica State pegarGogumelo();
+	
+	
+	
+	
+	
+
+}

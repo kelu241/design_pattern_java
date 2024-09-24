@@ -1,0 +1,113 @@
+package br.com.dominio;
+
+//import br.com.dominio.builder.*;
+import br.com.dominio.factory.*;
+import br.com.dominio.strategy.*;
+import br.com.dominio.decorator.*;
+import br.com.dominio.singleton.*;
+import br.com.dominio.MVC.Controller;
+import br.com.dominio.MVC.Modelo;
+import br.com.dominio.MVC.View;
+import br.com.dominio.abstrac_factory.*;
+import br.com.dominio.builder.*;
+import br.com.dominio.state.*;
+
+import java.math.BigDecimal;
+
+import javax.swing.JOptionPane;
+
+public class principal {
+
+	public static void main(String[] args) {
+		// singleton
+
+		GerenciadorImpressao g1 = GerenciadorImpressao.getInstance();
+		System.out.println(g1);
+		GerenciadorImpressao g2 = GerenciadorImpressao.getInstance();
+		System.out.println(g2);
+
+		// FACTORY
+
+		String texto = JOptionPane.showInputDialog(null);
+		Mensagem mensagem = new MensagemSMS();
+		mensagem.enviar(texto);
+		Mensagem mensagem1 = new MensagemEmail();
+		String texto2 = JOptionPane.showInputDialog(null);
+		mensagem1.enviar(texto2);
+
+		// BUILDER
+
+		Pedido pedido = new PedidoBuilder().setPedido("9999").setCliente(0, "joão", "99738873")
+				.setProduto("ps5 PRO", 1, new BigDecimal(10000.00)).setProduto("Quest 3", 1, new BigDecimal(5000.00))
+				.setVendedor(5, "Otávio").builder();
+		pedido.PedidoInformacoes();
+
+		// ABSTRACT_FACTORY
+
+		Produto produto = new Produto();
+		NFE nota = new NFESalvador();
+		produto.setNome("XBOX 360");
+		produto.setQuantidade(12);
+		produto.setValor(new BigDecimal(2000));
+		produto.setValorTotal(produto.getValor().doubleValue() + nota.calcularImposto(produto));
+
+		VendaFactory factory = new LojaCentroInformatica();
+
+		Venda venda = new Venda(factory);
+
+		venda.realizarVenda(produto);
+
+		// MVC
+
+		View visao = new View();
+		Modelo model = new Modelo();
+
+		Controller controlador = new Controller(visao, model);
+
+		visao.setVisible(true);
+
+		// DECORATOR
+
+		CalculoPreco calculo = new CalculoPrecoComum();
+
+		BigDecimal preco = calculo.valorFinal(produto);
+
+		System.out.println("R$" + Double.toString(preco.doubleValue()));
+
+		CalculoPreco calculo2 = new CalculoPrecoFrete(calculo);
+
+		BigDecimal preco2 = calculo2.valorFinal(produto);
+
+		System.out.println("R$" + Double.toString(preco2.doubleValue()));
+
+		CalculoPreco calculo3 = new CalculoPrecoBrinde(new CalculoPrecoFrete(new CalculoPrecoComum()));
+
+		BigDecimal preco3 = calculo3.valorFinal(produto);
+
+		System.out.println("R$" + Double.toString(preco3.doubleValue()));
+
+		// Strategy
+
+		StrategyContext strategContext = new StrategyContext(new Somar());
+
+		System.out.println(strategContext.conta(5, 4));
+
+		StrategyContext strategContext1 = new StrategyContext(new Subtrair());
+
+		System.out.println(strategContext1.conta(5, 4));
+		
+		//STATE
+		
+		State mario = new Mario();
+		mario.pegarGogumelo();
+		mario.retornarTipo();
+		System.out.println("-------------------------------------------");
+		mario.pegarEstrala();
+		mario.retornarTipo();
+		System.out.println("-------------------------------------------");
+		mario.colidirComInimigo();
+		mario.retornarTipo();
+
+	}
+
+}

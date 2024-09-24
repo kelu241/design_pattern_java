@@ -1,0 +1,25 @@
+package br.com.dominio.strategy;
+
+public class StrategyMath {
+	
+	
+	
+	private Calculo calculo;
+
+	public StrategyMath(Calculo calculo) {
+
+		this.calculo = calculo;
+	}
+	
+	
+	public int conta(int num1, int num2) {
+		
+		
+		return calculo.Calcular(num1, num2);
+		
+		
+	}
+	
+	
+
+}
